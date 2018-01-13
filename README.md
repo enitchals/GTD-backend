@@ -9,3 +9,6 @@ someday/maybe -- status for both tasks and projects that kicks them to different
 user authentication... I need to figure this part out. logins, password hashing, browser tokens/cookies, etc
 
 calendar and reminders -- build these last?
+
+reference:
+https://hamberg.no/gtd/
