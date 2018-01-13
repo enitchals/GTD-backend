@@ -7,6 +7,9 @@ const ERROR = 422;
 const addUser = (req, res) => {
 };
 
+const login = (req, res) => {
+};
+
 // const editUser = (req, res) => {}
 
 const deleteUser = (req, res) => {
@@ -19,6 +22,7 @@ const deleteUser = (req, res) => {
 
 module.exports = {
     addUser,
+    login,
     editUser,
     deleteUser,
 };

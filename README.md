@@ -12,3 +12,15 @@ calendar and reminders -- build these last?
 
 reference:
 https://hamberg.no/gtd/
+
+# API:
+
+## /user
+
+### /user/login
+
+## /task
+
+## /project
+
+## /note

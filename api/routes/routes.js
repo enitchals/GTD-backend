@@ -3,13 +3,15 @@ const user = require ('../controllers/userControllers.js');
 const project = require ('../controllers/projectControllers.js');
 const note = require ('../controllers/noteControllers.js');
 
-// const middleware = require('../middlewares/middleware')
+const middleware = require('../middlewares/middleware.js');
 
 module.exports = (app) => {
     app.route('/user')
-        .post(user.addUser)
+        .post(middleware.hash, user.addUser)
         .put(user.editUser)
         .delete(user.deleteUser);
+    app.route('/user/login')
+        .post(middleware.authenticate, user.login)
     app.route('/task')
         .post(task.addTask)
         .put(task.editTask)
