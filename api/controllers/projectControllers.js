@@ -5,8 +5,8 @@ const Project = require('../models/projectModels.js');
 const ERROR = 422;
 
 const addProject = (req, res) => {
-    const {  } = req.body;
-    const newProject = new Project({  });
+    const { metadata, project, due } = req.body;
+    const newProject = new Project({ metadata, project, due });
     newProject
         .save()
         .then(project => {
@@ -30,6 +30,6 @@ const deleteProject = (req, res) => {
 
 module.exports = {
     addProject,
-    editProject,
+    //editProject,
     deleteProject,
 };

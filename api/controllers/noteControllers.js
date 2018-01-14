@@ -5,8 +5,8 @@ const Note = require('../models/noteModels.js');
 const ERROR = 422;
 
 const addNote = (req, res) => {
-    const {  } = req.body;
-    const newNote = new Note({  });
+    const { metadata, note } = req.body;
+    const newNote = new Note({ metadata, note });
     newNote
         .save()
         .then(note => {
@@ -30,6 +30,6 @@ const deleteNote = (req, res) => {
 
 module.exports = {
     addNote,
-    editNote,
+    //editNote,
     deleteNote,
 };

@@ -3,18 +3,24 @@
 const mongoose = require('mongoose');
 
 const ProjectSchema = new mongoose.Schema({
+    metadata: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ProjectMetadata',
+        required: true,
+    },
     project: {
         type: String,
         required: true,
     },
-    user: {
+    tasks: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    },
+        ref: 'Task',
+    }],
     notes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Note',
-    }]
+    }],
+    due: Date,
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

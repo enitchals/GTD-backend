@@ -17,10 +17,28 @@ https://hamberg.no/gtd/
 
 ## /user
 
-#### /user/login
+POST: Create a new user.
+PUT: Edit user account.
+DELETE: Delete user account.
+
+## /user/login
+
+POST: Log in.
 
 ## /task
 
+POST: Create a task.
+PUT: Edit a task.
+DELETE: Delete a task.
+
 ## /project
 
+POST: Create a project.
+PUT: Edit a project.
+DELETE: Delete a project.
+
 ## /note
+
+POST: Create a note.
+PUT: Edit a note.
+DELETE: Delete a note.

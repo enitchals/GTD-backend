@@ -3,35 +3,18 @@
 const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({
+    metadata: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'TaskMetadata',
+        required: true,
+    },
     task: {
         type: String,
         required: true,
     },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    },
-    memo: {
-        type: String,
-    },
     status: {
         type: String,
-        enum: ['someday', 'nextActions', 'waiting', 'scheduled']
-    },
-    dueDate: {
-        type: Date,
-    },
-    doDate: {
-        type: Date,
-    },
-    created: {
-        type: Date,
-        default: Date.now,
-    },
-    tags: [String],
-    project: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project',
+        enum: ['nextActions', 'someday']
     },
 });
 

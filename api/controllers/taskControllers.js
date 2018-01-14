@@ -5,8 +5,8 @@ const Task = require('../models/taskModels.js');
 const ERROR = 422;
 
 const addTask = (req, res) => {
-    const { task, user, memo, status, dueDate, doDate, tags, project } = req.body;
-    const newTask = new Task({ task, user, memo, status, dueDate, doDate, tags, project });
+    const { metadata, task, status } = req.body;
+    const newTask = new Task({ metadata, task, status });
     newTask
         .save()
         .then(task => {
@@ -30,6 +30,6 @@ const deleteTask = (req, res) => {
 
 module.exports = {
     addTask,
-    editTask,
+    //editTask,
     deleteTask,
 };

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/enitchals/GTD-backend/issues"
   },
-  "homepage": "https://github.com/enitchals/GTD-backend#readme"
+  "homepage": "https://github.com/enitchals/GTD-backend#readme",
+  "dependencies": {
+    "mongoose": "^4.13.9"
+  }
 }
