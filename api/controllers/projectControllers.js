@@ -1,18 +1,16 @@
 const mongoose = require('mongoose');
-
 const Project = require('../models/projectModels.js');
 
 const ERROR = 422;
 
 const addProject = (req, res) => {
-    const { metadata, project, due } = req.body;
-    const newProject = new Project({ metadata, project, due });
+    const { metadata, project, description, tasks, notes, due } = req.body;
+    const newProject = new Project({ metadata, project, description, tasks, notes, due });
+    console.log(newProject);
     newProject
         .save()
-        .then(project => {
-            res.json(project);
-        })
-        .catch(err) => {
+        .then(project => res.json(project))
+        .catch((err) => {
             res.status(ERROR).json(err);
             return;
         });

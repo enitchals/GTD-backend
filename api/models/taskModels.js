@@ -12,6 +12,10 @@ const TaskSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    memo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Note',
+    },
     status: {
         type: String,
         enum: ['nextActions', 'someday']

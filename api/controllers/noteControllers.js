@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Note = require('../models/noteModels.js');
 
 const ERROR = 422;
@@ -7,12 +6,11 @@ const ERROR = 422;
 const addNote = (req, res) => {
     const { metadata, note } = req.body;
     const newNote = new Note({ metadata, note });
+    console.log(newNote);
     newNote
         .save()
-        .then(note => {
-            res.json(note);
-        })
-        .catch(err) => {
+        .then(note => res.json(note))
+        .catch((err) => {
             res.status(ERROR).json(err);
             return;
         });
