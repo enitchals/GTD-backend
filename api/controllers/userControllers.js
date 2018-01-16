@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-
 const User = require('../models/userModels');
+const requireAuth = require('../services/passport').requireAuth;
+const getTokenForUser = require('../services/token.js');
 
 const ERROR = 422;
 
@@ -11,7 +12,10 @@ const addUser = (req, res) => {
     console.log('new user:', newUser.email);
     newUser
         .save()
-        .then(user => res.json(user))
+        .then(user => {
+            res.json(user);
+            res.send({ token: getTokenForUser(user)});
+        })
         .catch(err => res.status(422).json(err));
 };
 

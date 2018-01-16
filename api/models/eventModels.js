@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 
 const EventSchema = new mongoose.Schema({
-    metadata: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'EventMetadata',
-        required: true,
+        ref: 'User',
+    },
+    project: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project'
     },
     event: {
         type: String,
         required: true,
     },
-    memo: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Note',
-    },
+    memo: String,
 });
 
 module.exports = mongoose.model('Event', EventSchema);

@@ -3,18 +3,18 @@
 const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({
-    metadata: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'TaskMetadata',
-        required: true,
+        ref: 'User',
     },
     task: {
         type: String,
         required: true,
     },
-    memo: {
+    memo: String,
+    project: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Note',
+        ref: 'Project',
     },
     status: {
         type: String,

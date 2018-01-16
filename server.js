@@ -12,7 +12,8 @@ const corsOptions = {
     origin: '*',
     methods: 'GET, HEAD, POST, PUT, PATCH, DELETE',
     preFlightContinue: false,
-    optionsSuccessStatus: 204
+    optionsSuccessStatus: 204,
+    credentials: true,
 };
 
 mongoose.Promise = global.Promise;
@@ -31,6 +32,6 @@ server.use(CORS(corsOptions));
 
 routes(server);
 
-server.listen(port, () => {
+server.listen(port, (req, res) => {
     console.log(`Server running on port ${port}`);
 });

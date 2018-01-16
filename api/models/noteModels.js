@@ -3,10 +3,13 @@
 const mongoose = require('mongoose');
 
 const NoteSchema = new mongoose.Schema({
-    metadata: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'NoteMetadata',
-        required: true,
+        ref: 'User',
+    },
+    project: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project',
     },
     note: {
         type: String,

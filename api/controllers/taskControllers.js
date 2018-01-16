@@ -4,8 +4,8 @@ const Task = require('../models/taskModels.js');
 const ERROR = 422;
 
 const addTask = (req, res) => {
-    const { metadata, task, status } = req.body;
-    const newTask = new Task({ metadata, task, status });
+    const { user, task, memo, project, status } = req.body;
+    const newTask = new Task({ user, task, memo, project, status });
     console.log(newTask);
     newTask
         .save()
@@ -15,6 +15,35 @@ const addTask = (req, res) => {
             return;
         });
 };
+
+const getTasks = (req, res) => {
+    const { id } = req.params;
+    Task
+        .find({
+            user: id
+        })
+        .then(tasks => {
+            res.json(tasks);
+            return;
+        })
+        .catch(err => {
+            res.status(ERROR).json(err);
+            return;
+        });
+}
+
+const getTask = (req, res) => {
+    const { id } = req.params;
+    Task.findById(id)
+        .then(task => {
+            res.json(task);
+            return;
+        })
+        .catch(err => {
+            res.status(ERROR).json(err);
+            return;
+        });
+}
 
 // const editTask = (req, res) => {}
 
@@ -31,4 +60,6 @@ module.exports = {
     addTask,
     //editTask,
     deleteTask,
+    getTask,
+    getTasks,
 };

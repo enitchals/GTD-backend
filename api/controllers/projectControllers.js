@@ -4,8 +4,8 @@ const Project = require('../models/projectModels.js');
 const ERROR = 422;
 
 const addProject = (req, res) => {
-    const { metadata, project, description, tasks, notes, due } = req.body;
-    const newProject = new Project({ metadata, project, description, tasks, notes, due });
+    const { user, project, memo, tasks, notes, events } = req.body;
+    const newProject = new Project({ user, project, memo, tasks, notes, events });
     console.log(newProject);
     newProject
         .save()
@@ -15,6 +15,34 @@ const addProject = (req, res) => {
             return;
         });
 };
+const getProjects = (req, res) => {
+    const { id } = req.params;
+    Project
+        .find({
+            user: id
+        })
+        .then(projects => {
+            res.json(projects);
+            return;
+        })
+        .catch(err => {
+            res.status(ERROR).json(err);
+            return;
+        });
+}
+
+const getProject = (req, res) => {
+    const { id } = req.params;
+    Project.findById(id)
+        .then(project => {
+            res.json(project);
+            return;
+        })
+        .catch(err => {
+            res.status(ERROR).json(err);
+            return;
+        });
+}
 
 // const editProject = (req, res) => {}
 
@@ -30,4 +58,6 @@ module.exports = {
     addProject,
     //editProject,
     deleteProject,
+    getProject,
+    getProjects,
 };

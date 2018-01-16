@@ -4,8 +4,8 @@ const Note = require('../models/noteModels.js');
 const ERROR = 422;
 
 const addNote = (req, res) => {
-    const { metadata, note } = req.body;
-    const newNote = new Note({ metadata, note });
+    const { user, project, note } = req.body;
+    const newNote = new Note({ user, project, note });
     console.log(newNote);
     newNote
         .save()
@@ -15,6 +15,35 @@ const addNote = (req, res) => {
             return;
         });
 };
+
+const getNotes = (req, res) => {
+    const { id } = req.params;
+    Note
+        .find({
+            user: id
+        })
+        .then(notes => {
+            res.json(notes);
+            return;
+        })
+        .catch(err => {
+            res.status(ERROR).json(err);
+            return;
+        });
+}
+
+const getNote = (req, res) => {
+    const { id } = req.params;
+    Note.findById(id)
+        .then(note => {
+            res.json(note);
+            return;
+        })
+        .catch(err => {
+            res.status(ERROR).json(err);
+            return;
+        });
+}
 
 // const editNote = (req, res) => {}
 
@@ -30,4 +59,6 @@ module.exports = {
     addNote,
     //editNote,
     deleteNote,
+    getNote,
+    getNotes,
 };

@@ -6,31 +6,46 @@ const event = require ('../controllers/eventControllers.js');
 
 const middleware = require('../middlewares/middleware.js');
 
-module.exports = (app) => {
-    app.route('/user')
-        .post(middleware.hash, user.addUser)
+        //.put(note.editNote)
         //.put(user.editUser)
         //.delete(user.deleteUser);
-    app.route('/user/login')
-        .post(middleware.authenticate, user.login)
-    app.route('/task')
-        .post(middleware.taskMetadata, task.addTask);
         //.put(task.editTask)
-    app.route('/task/:id')
-        .delete(task.deleteTask);
-    app.route('/project')
-        .post(middleware.projectMetadata, project.addProject);
         //.put(project.editProject)
-    app.route('/project/:id')
-        .delete(project.deleteProject);
-    app.route('/note')
-        .post(middleware.noteMetadata, note.addNote);
-        //.put(note.editNote)
-    app.route('/note/:id')
-        .delete(note.deleteNote);
-    app.route('/event')
-        .post(middleware.eventMetadata, event.addEvent);
         //.put(event.editEvent)
+
+module.exports = (app) => {
+    app.route('/user').post(middleware.hash, user.addUser)
+    app.route('/user/login').post(middleware.authenticate, user.login)
+    //
+    app.route('/task')
+        .post(task.addTask)
+    app.route('/tasks/:id')
+        .get(task.getTasks);
+    app.route('/task/:id')
+        .get(task.getTask)
+        .delete(task.deleteTask);
+    //
+    app.route('/project')
+        .post(project.addProject);
+    app.route('/projects/:id')
+        .get(project.getProjects);
+    app.route('/project/:id')
+        .get(project.getProject)
+        .delete(project.deleteProject);
+    //
+    app.route('/note')
+        .post(note.addNote)
+    app.route('/notes/:id')
+        .get(note.getNotes);
+    app.route('/note/:id')
+        .get(note.getNote)
+        .delete(note.deleteNote);
+    //
+    app.route('/event')
+        .post(event.addEvent)
+    app.route('/events/:id')
+        .get(event.getEvents);
     app.route('/event/:id')
+        .get(event.getEvent)
         .delete(event.deleteEvent);
 };
