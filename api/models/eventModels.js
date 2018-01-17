@@ -14,6 +14,11 @@ const EventSchema = new mongoose.Schema({
         required: true,
     },
     memo: String,
+    date: {
+        type: String,
+        required: true,
+    },
+    time: String,
 });
 
 module.exports = mongoose.model('Event', EventSchema);

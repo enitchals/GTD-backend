@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/userModels.js');
+const requireSignIn = require('../services/passport').requireSignIn;
+const getTokenForUser = require('../services/token');
 const BCRYPT_COST = 11;
 
 hash = (req, res, next) => {
@@ -17,6 +19,13 @@ hash = (req, res, next) => {
         .catch((err) => {
             throw new Error(err);
         });
+};
+
+signIn = (req, res) => {
+    res.sent({
+        token: getTokenForUser(req.user),
+        user: req.user,
+    });
 };
 
 authenticate = (req, res, next) => {
@@ -49,4 +58,5 @@ authenticate = (req, res, next) => {
 module.exports = {
     hash,
     authenticate,
+    signIn,
 };

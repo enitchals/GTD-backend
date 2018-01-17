@@ -34,7 +34,12 @@ const getProjects = (req, res) => {
 const getProject = (req, res) => {
     const { id } = req.params;
     Project.findById(id)
+        .populate('tasks')
+        .populate('notes')
+        .populate('events')
+        .exec()
         .then(project => {
+            console.log("PROJECT SENT:", project);
             res.json(project);
             return;
         })

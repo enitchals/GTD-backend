@@ -4,8 +4,8 @@ const Note = require('../models/noteModels.js');
 const ERROR = 422;
 
 const addNote = (req, res) => {
-    const { user, project, note } = req.body;
-    const newNote = new Note({ user, project, note });
+    const { user, project, title, note, tags } = req.body;
+    const newNote = new Note({ user, project, title, note, tags });
     console.log(newNote);
     newNote
         .save()
@@ -13,7 +13,11 @@ const addNote = (req, res) => {
         .catch((err) => {
             res.status(ERROR).json(err);
             return;
-        });
+        })
+        .catch(err => {
+            res.status(ERROR).json(err);
+            return;
+        })
 };
 
 const getNotes = (req, res) => {
@@ -23,6 +27,7 @@ const getNotes = (req, res) => {
             user: id
         })
         .then(notes => {
+            console.log("NOTES SENT:", notes);            
             res.json(notes);
             return;
         })
@@ -32,10 +37,32 @@ const getNotes = (req, res) => {
         });
 }
 
+
+const getNotesByProject = (req, res) => {
+    const { id } = req.params;
+    Note
+        .find({
+            project: id
+        })
+        .then(notes => {
+            console.log("NOTES SENT:", notes);
+            res.json(notes);
+            return;
+        })
+        .catch(err => {
+            res.status(ERROR).json(err);
+            return;
+        });
+}
+
+
 const getNote = (req, res) => {
     const { id } = req.params;
     Note.findById(id)
+        //.populate('project', 'project')
+        //.exec()
         .then(note => {
+            console.log("NOTE SENT:", note);
             res.json(note);
             return;
         })
@@ -60,5 +87,6 @@ module.exports = {
     //editNote,
     deleteNote,
     getNote,
+    getNotesByProject,
     getNotes,
 };

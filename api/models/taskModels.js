@@ -18,7 +18,7 @@ const TaskSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['nextActions', 'someday']
+        enum: ['nextActions', 'activeProject', 'someday', 'complete']
     },
 });
 

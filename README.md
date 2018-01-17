@@ -24,6 +24,9 @@ POST /user/login: Login to user account
 Create a new user. (TESTED AND WORKING)
 Accepts: name, email, password
 
+## POST /login
+Log in.
+
 # =======TASKS=======
 
 ## POST /task

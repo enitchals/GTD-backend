@@ -1,5 +1,3 @@
-// Notes can be associated with a project (or not), and they can have a reminder associated with them (or not).
-
 const mongoose = require('mongoose');
 
 const NoteSchema = new mongoose.Schema({
@@ -11,10 +9,15 @@ const NoteSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Project',
     },
+    title: {
+        type: String,
+        required: true
+    },
     note: {
         type: String,
         required: true,
     },
+    tags: [String],
 });
 
 module.exports = mongoose.model('Note', NoteSchema);

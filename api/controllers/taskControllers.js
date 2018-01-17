@@ -23,6 +23,24 @@ const getTasks = (req, res) => {
             user: id
         })
         .then(tasks => {
+            console.log("TASKS SENT:", tasks);
+            res.json(tasks);
+            return;
+        })
+        .catch(err => {
+            res.status(ERROR).json(err);
+            return;
+        });
+}
+
+const getTasksByProject = (req, res) => {
+    const { id } = req.params;
+    Task
+        .find({
+            project: id
+        })
+        .then(tasks => {
+            console.log("TASKS SENT:", tasks);
             res.json(tasks);
             return;
         })
@@ -35,7 +53,10 @@ const getTasks = (req, res) => {
 const getTask = (req, res) => {
     const { id } = req.params;
     Task.findById(id)
+        //.populate('project', 'project')
+        //.exec()
         .then(task => {
+            console.log("TASK SENT:", task);
             res.json(task);
             return;
         })
@@ -61,5 +82,6 @@ module.exports = {
     //editTask,
     deleteTask,
     getTask,
+    getTasksByProject,
     getTasks,
 };

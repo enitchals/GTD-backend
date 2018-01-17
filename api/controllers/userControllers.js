@@ -20,7 +20,11 @@ const addUser = (req, res) => {
 };
 
 const login = (req, res) => {
-    res.json(req.loggedInUser);
+    res.json(req.loggedInUser)
+    res.send({
+        token: getTokenForUser(req.user),
+        user: req.user,
+    });
 };
 
 // const editUser = (req, res) => {}

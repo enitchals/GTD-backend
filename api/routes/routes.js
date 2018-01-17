@@ -3,6 +3,7 @@ const user = require ('../controllers/userControllers.js');
 const project = require ('../controllers/projectControllers.js');
 const note = require ('../controllers/noteControllers.js');
 const event = require ('../controllers/eventControllers.js');
+const requireAuth = require('../services/passport').requireAuth;
 
 const middleware = require('../middlewares/middleware.js');
 
@@ -24,6 +25,8 @@ module.exports = (app) => {
     app.route('/task/:id')
         .get(task.getTask)
         .delete(task.deleteTask);
+    app.route('/project/tasks/:id')
+        .get(task.getTasksByProject);
     //
     app.route('/project')
         .post(project.addProject);
@@ -40,6 +43,8 @@ module.exports = (app) => {
     app.route('/note/:id')
         .get(note.getNote)
         .delete(note.deleteNote);
+    app.route('/project/notes/:id')
+        .get(note.getNotesByProject);
     //
     app.route('/event')
         .post(event.addEvent)
@@ -48,4 +53,6 @@ module.exports = (app) => {
     app.route('/event/:id')
         .get(event.getEvent)
         .delete(event.deleteEvent);
+    app.route('/project/events/:id')
+        .get(event.getEventsByProject);
 };
