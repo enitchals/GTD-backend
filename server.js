@@ -17,7 +17,8 @@ const corsOptions = {
 };
 
 mongoose.Promise = global.Promise;
-mongoose.connect('localhost:27017');
+mongoose.connect('mongodb://nitchals-gtd:getting-things-done-CS4@ds153577.mlab.com:53577/nitchals-gtd');
+
 
 server.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
