@@ -4,8 +4,8 @@ const Project = require('../models/projectModels.js');
 const ERROR = 422;
 
 const addProject = (req, res) => {
-    const { user, project, memo, tasks, notes, events } = req.body;
-    const newProject = new Project({ user, project, memo, tasks, notes, events });
+    const { user, project, memo } = req.body;
+    const newProject = new Project({ user, project, memo });
     console.log(newProject);
     newProject
         .save()

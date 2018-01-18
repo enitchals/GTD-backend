@@ -9,10 +9,10 @@ const addUser = (req, res) => {
     const password = req.password;
     const { name, email } = req.body;
     const newUser = new User({ name, email, password });
-    console.log('new user:', newUser.email);
     newUser
         .save()
         .then(user => {
+            console.log("NEW USER:", user);
             res.json(user);
             res.send({ token: getTokenForUser(user)});
         })

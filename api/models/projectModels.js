@@ -14,6 +14,7 @@ const ProjectSchema = new mongoose.Schema({
     memo: {
         type: String,
     },
+    /*
     tasks: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Task',
@@ -26,6 +27,7 @@ const ProjectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Event',
     }]
+    */
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

@@ -16,7 +16,7 @@ const middleware = require('../middlewares/middleware.js');
 
 module.exports = (app) => {
     app.route('/user').post(middleware.hash, user.addUser)
-    app.route('/user/login').post(middleware.authenticate, user.login)
+    app.route('/login').post(middleware.authenticate, user.login)
     //
     app.route('/task')
         .post(task.addTask)
@@ -27,6 +27,8 @@ module.exports = (app) => {
         .delete(task.deleteTask);
     app.route('/project/tasks/:id')
         .get(task.getTasksByProject);
+    app.route('/nextActions/:id')
+        .get(task.getNextActions);
     //
     app.route('/project')
         .post(project.addProject);

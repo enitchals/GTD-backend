@@ -50,6 +50,26 @@ const getTasksByProject = (req, res) => {
         });
 }
 
+const getNextActions = (req, res) => {
+    const { id } = req.params;
+    Task
+        .find({
+            user: id,
+            status: "nextActions"
+        })
+        .populate('project')
+        .exec()
+        .then(tasks => {
+            console.log("NEXT ACTIONS SENT:", tasks);
+            res.json(tasks);
+            return;
+        })
+        .catch(err => {
+            res.status(ERROR).json(err);
+            return;
+        });
+}
+
 const getTask = (req, res) => {
     const { id } = req.params;
     Task.findById(id)
@@ -72,7 +92,8 @@ const getTask = (req, res) => {
 const deleteTask = (req, res) => {
     const {id} = req.params;
     Task.findByIdAndRemove(id, (err, task) => {
-        res.status(200).json('removed the task');
+        console.log("DELETING TASK:", task);
+        res.status(200).json(id);
         return;
     });
 }
@@ -82,6 +103,7 @@ module.exports = {
     //editTask,
     deleteTask,
     getTask,
+    getNextActions,
     getTasksByProject,
     getTasks,
 };
