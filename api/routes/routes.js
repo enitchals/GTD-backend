@@ -3,8 +3,6 @@ const user = require ('../controllers/userControllers.js');
 const project = require ('../controllers/projectControllers.js');
 const note = require ('../controllers/noteControllers.js');
 const event = require ('../controllers/eventControllers.js');
-const requireAuth = require('../services/passport').requireAuth;
-
 const middleware = require('../middlewares/middleware.js');
 
         //.put(note.editNote)
@@ -16,7 +14,7 @@ const middleware = require('../middlewares/middleware.js');
 
 module.exports = (app) => {
     app.route('/user').post(middleware.hash, user.addUser)
-    app.route('/login').post(middleware.authenticate, user.login)
+    app.route('/login').post(middleware.authenticate, middleware.taskData, middleware.noteData, middleware.eventData, middleware.projectData, user.login)
     //
     app.route('/task')
         .post(task.addTask)

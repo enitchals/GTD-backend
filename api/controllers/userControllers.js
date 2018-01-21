@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
-const User = require('../models/userModels');
-const requireAuth = require('../services/passport').requireAuth;
-const getTokenForUser = require('../services/token.js');
+const User = require('../models/userModels.js');
+const Task = require('../models/taskModels.js');
+const Note = require('../models/noteModels.js');
+const Event = require('../models/eventModels.js');
+const Project = require('../models/projectModels.js');
+
 
 const ERROR = 422;
 
@@ -14,17 +17,18 @@ const addUser = (req, res) => {
         .then(user => {
             console.log("NEW USER:", user);
             res.json(user);
-            res.send({ token: getTokenForUser(user)});
+            //res.send({ token: getTokenForUser(user)});
         })
         .catch(err => res.status(422).json(err));
 };
 
 const login = (req, res) => {
-    res.json(req.loggedInUser)
-    res.send({
-        token: getTokenForUser(req.user),
-        user: req.user,
-    });
+    res.json({user: req.loggedInUser, tasks: req.tasks, notes: req.notes, events: req.events, projects: req.projects})
+    return;
+    //res.send({
+        //token: getTokenForUser(req.user),
+        //user: req.user,
+    //});
 };
 
 // const editUser = (req, res) => {}
