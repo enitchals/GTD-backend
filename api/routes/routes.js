@@ -17,11 +17,12 @@ module.exports = (app) => {
 // (NOT ALL OF THESE ARE ACTUALLY IN USE...)
 //
     app.route('/task')
-        .post(task.addTask)
+        .post(task.addTask);
     app.route('/tasks/:id')
         .get(task.getTasks);
     app.route('/task/:id')
-        .get(task.getTask)
+        .get(task.getTask);
+    app.route('/task/:id')        
         .delete(task.deleteTask);
     app.route('/project/tasks/:id')
         .get(task.getTasksByProject);
@@ -36,18 +37,20 @@ module.exports = (app) => {
     app.route('/projects/:id')
         .get(project.getProjects);
     app.route('/project/:id')
-        .get(project.getProject)
+        .get(project.getProject);
+    app.route('/project/:id')        
         .delete(project.deleteProject);
 //
 // ROUTES FOR NOTE-RELATED DATA
 // (NOT ALL OF THESE ARE ACTUALLY IN USE...)
 //
     app.route('/note')
-        .post(note.addNote)
+        .post(note.addNote);
     app.route('/notes/:id')
         .get(note.getNotes);
     app.route('/note/:id')
-        .get(note.getNote)
+        .get(note.getNote);
+    app.route('/note/:id')        
         .delete(note.deleteNote);
     app.route('/project/notes/:id')
         .get(note.getNotesByProject);
@@ -56,11 +59,12 @@ module.exports = (app) => {
 // (NOT ALL OF THESE ARE ACTUALLY IN USE...)
 //
     app.route('/event')
-        .post(event.addEvent)
+        .post(event.addEvent);
     app.route('/events/:id')
         .get(event.getEvents);
     app.route('/event/:id')
-        .get(event.getEvent)
+        .get(event.getEvent);
+    app.route('/event/:id')        
         .delete(event.deleteEvent);
     app.route('/project/events/:id')
         .get(event.getEventsByProject);
