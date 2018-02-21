@@ -3,6 +3,7 @@ const Event = require('../models/eventModels.js');
 
 const ERROR = 422;
 
+// ADD A NEW EVENT OBJECT TO THE MONGO DB
 const addEvent = (req, res) => {
     const { user, project, event, memo, date, time } = req.body;
     const newEvent = new Event({ user, project, event, memo, date, time });
@@ -16,7 +17,7 @@ const addEvent = (req, res) => {
         });
 };
 
-
+// GET EVENTS ASSOCIATED WITH A GIVEN USER ID
 const getEvents = (req, res) => {
     const { id } = req.params;
     Event
@@ -34,7 +35,7 @@ const getEvents = (req, res) => {
         });
 }
 
-
+// GET EVENTS ASSOCIATED WITH A SPECIFIC PROJECT ID
 const getEventsByProject = (req, res) => {
     const { id } = req.params;
     Event
@@ -52,6 +53,8 @@ const getEventsByProject = (req, res) => {
         });
 }
 
+// GET DETAILS FOR A SPECIFIC EVENT --
+// CAN PROBABLY BE DEPRECATED/DELETED
 const getEvent = (req, res) => {
     const { id } = req.params;
     Event.findById(id)
@@ -68,8 +71,7 @@ const getEvent = (req, res) => {
         });
 }
 
-// const editEvent = (req, res) => {}
-
+// DELETE EVENT -- NEEDS AUTH TOKEN/MIDDLEWARE
 const deleteEvent = (req, res) => {
     const {id} = req.params;
     Event.findByIdAndRemove(id, (err, event) => {
@@ -80,7 +82,6 @@ const deleteEvent = (req, res) => {
 
 module.exports = {
     addEvent,
-    //editEvent,
     deleteEvent,
     getEvent,
     getEventsByProject,

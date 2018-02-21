@@ -3,6 +3,7 @@ const Project = require('../models/projectModels.js');
 
 const ERROR = 422;
 
+// CREATE A NEW PROJECT OBJECT IN MONGO DB
 const addProject = (req, res) => {
     const { user, project, memo } = req.body;
     const newProject = new Project({ user, project, memo });
@@ -15,6 +16,8 @@ const addProject = (req, res) => {
             return;
         });
 };
+
+// GET ALL THE PROJECTS FOR A GIVEN USER ID
 const getProjects = (req, res) => {
     const { id } = req.params;
     Project
@@ -31,13 +34,12 @@ const getProjects = (req, res) => {
         });
 }
 
+// GET DETAILS FOR A PROJECT ID
+// I THINK THIS CAN BE DEPRECATED --
+// NOT SURE WHY I'D NEED IT ANYMORE
 const getProject = (req, res) => {
     const { id } = req.params;
     Project.findById(id)
-        .populate('tasks')
-        .populate('notes')
-        .populate('events')
-        .exec()
         .then(project => {
             console.log("PROJECT SENT:", project);
             res.json(project);
@@ -49,8 +51,8 @@ const getProject = (req, res) => {
         });
 }
 
-// const editProject = (req, res) => {}
-
+// DELETE A PROJECT -- NEEDS MIDDLEWARE AUTH
+// OR TOKEN AUTH TO PROTECT USER DATA
 const deleteProject = (req, res) => {
     const {id} = req.params;
     Project.findByIdAndRemove(id, (err, project) => {
@@ -61,7 +63,6 @@ const deleteProject = (req, res) => {
 
 module.exports = {
     addProject,
-    //editProject,
     deleteProject,
     getProject,
     getProjects,

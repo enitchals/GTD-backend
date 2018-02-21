@@ -17,6 +17,7 @@ const corsOptions = {
 };
 
 mongoose.Promise = global.Promise;
+// THIS IS AN MLAB MONGO SERVER:
 mongoose.connect('mongodb://nitchals-gtd:getting-things-done-CS4@ds153577.mlab.com:53577/nitchals-gtd');
 
 

@@ -3,6 +3,7 @@ const Note = require('../models/noteModels.js');
 
 const ERROR = 422;
 
+// ADD A NEW NOTE OBJECT IN THE MONGO DB
 const addNote = (req, res) => {
     const { user, project, title, note, tags } = req.body;
     const newNote = new Note({ user, project, title, note, tags });
@@ -20,6 +21,17 @@ const addNote = (req, res) => {
         })
 };
 
+/*
+const editNote = (req, res) => {
+    const { user, project, title, note, tags, id } = req.body;
+    Note
+        .findByIdAndUpdate(req.body)
+        .then()
+
+}
+*/
+
+// GET ALL THE NOTES FOR A GIVEN USER ID
 const getNotes = (req, res) => {
     const { id } = req.params;
     Note
@@ -37,7 +49,7 @@ const getNotes = (req, res) => {
         });
 }
 
-
+// GET NOTES ASSOCIATED WITH A GIVEN PROJECT ID
 const getNotesByProject = (req, res) => {
     const { id } = req.params;
     Note
@@ -55,7 +67,9 @@ const getNotesByProject = (req, res) => {
         });
 }
 
-
+// GET DETAILS FOR A SPECIFIC NOTE
+// CAN PROBABLY BE DEPRECATED
+// -- NOT SURE I NEED THIS ANYMORE
 const getNote = (req, res) => {
     const { id } = req.params;
     Note.findById(id)
@@ -72,8 +86,7 @@ const getNote = (req, res) => {
         });
 }
 
-// const editNote = (req, res) => {}
-
+// DELETE A NOTE -- THIS NEEDS AUTH TOKEN/MIDDLEWARE
 const deleteNote = (req, res) => {
     const {id} = req.params;
     Note.findByIdAndRemove(id, (err, note) => {
@@ -84,7 +97,6 @@ const deleteNote = (req, res) => {
 
 module.exports = {
     addNote,
-    //editNote,
     deleteNote,
     getNote,
     getNotesByProject,

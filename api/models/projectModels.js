@@ -1,4 +1,6 @@
-// A Project is a way of collecting related tasks and notes in one place.
+// PROJECTS ARE USED TO TIE TASKS, NOTES, AND EVENTS
+// TOGETHER INTO A COMMON GOAL OR THEME.
+// NO LONGER STORING TASKS/NOTES/EVENTS IN ARRAYS ON THESE.
 
 const mongoose = require('mongoose');
 

@@ -6,6 +6,7 @@ const Event = require('../models/eventModels.js');
 const Project = require('../models/projectModels.js');
 const BCRYPT_COST = 11;
 
+// HASHES PASSWORDS
 hash = (req, res, next) => {
     const { password } = req.body;
     if (!password) {
@@ -23,6 +24,7 @@ hash = (req, res, next) => {
         });
 };
 
+//AUTHENTICATION MIDDLEWARE FOR USER LOGIN
 authenticate = (req, res, next) => {
     const { email, password } = req.body;
     if (!email) {
@@ -49,6 +51,7 @@ authenticate = (req, res, next) => {
     });
 };
 
+// SEND USER'S TASK DATA DURING LOGIN PROCESS
 taskData = (req, res, next) => {
     const id = req.loggedInUser._id;
     console.log(id);
@@ -68,6 +71,7 @@ taskData = (req, res, next) => {
     });
 }
 
+// SEND USER'S NOTE DATA DURING LOGIN PROCESS
 noteData = (req, res, next) => {
     const id = req.loggedInUser._id;
     console.log(id);
@@ -86,6 +90,7 @@ noteData = (req, res, next) => {
     });
 }
 
+// SEND USER'S EVENT DATA DURING LOGIN PROCESS
 eventData = (req, res, next) => {
     const id = req.loggedInUser._id;
     console.log(id);
@@ -104,6 +109,7 @@ eventData = (req, res, next) => {
     });
 }
 
+// SEND USER'S PROJECT DATA DURING LOGIN PROCESS
 projectData = (req, res, next) => {
     const id = req.loggedInUser._id;
     console.log(id); 

@@ -5,17 +5,17 @@ const note = require ('../controllers/noteControllers.js');
 const event = require ('../controllers/eventControllers.js');
 const middleware = require('../middlewares/middleware.js');
 
-        //.put(note.editNote)
-        //.put(user.editUser)
-        //.delete(user.deleteUser);
-        //.put(task.editTask)
-        //.put(project.editProject)
-        //.put(event.editEvent)
 
 module.exports = (app) => {
+//
+// ROUTES FOR CREATING ACCOUNT, LOGGING IN, ETC
+//
     app.route('/user').post(middleware.hash, user.addUser)
     app.route('/login').post(middleware.authenticate, middleware.taskData, middleware.noteData, middleware.eventData, middleware.projectData, user.login)
-    //
+//
+// ROUTES FOR TASK-RELATED DATA
+// (NOT ALL OF THESE ARE ACTUALLY IN USE...)
+//
     app.route('/task')
         .post(task.addTask)
     app.route('/tasks/:id')
@@ -27,7 +27,10 @@ module.exports = (app) => {
         .get(task.getTasksByProject);
     app.route('/nextActions/:id')
         .get(task.getNextActions);
-    //
+//
+// ROUTES FOR PROJECT-RELATED DATA
+// (NOT ALL OF THESE ARE ACTUALLY IN USE...)
+//
     app.route('/project')
         .post(project.addProject);
     app.route('/projects/:id')
@@ -35,7 +38,10 @@ module.exports = (app) => {
     app.route('/project/:id')
         .get(project.getProject)
         .delete(project.deleteProject);
-    //
+//
+// ROUTES FOR NOTE-RELATED DATA
+// (NOT ALL OF THESE ARE ACTUALLY IN USE...)
+//
     app.route('/note')
         .post(note.addNote)
     app.route('/notes/:id')
@@ -45,7 +51,10 @@ module.exports = (app) => {
         .delete(note.deleteNote);
     app.route('/project/notes/:id')
         .get(note.getNotesByProject);
-    //
+//
+// ROUTES FOR EVENT-RELATED DATA
+// (NOT ALL OF THESE ARE ACTUALLY IN USE...)
+//
     app.route('/event')
         .post(event.addEvent)
     app.route('/events/:id')

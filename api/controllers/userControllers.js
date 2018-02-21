@@ -4,10 +4,9 @@ const Task = require('../models/taskModels.js');
 const Note = require('../models/noteModels.js');
 const Event = require('../models/eventModels.js');
 const Project = require('../models/projectModels.js');
-
-
 const ERROR = 422;
 
+// CREATE A NEW USER -- HASH PASSWORD AND CREATE MONGO USER OBJECT
 const addUser = (req, res) => {
     const password = req.password;
     const { name, email } = req.body;
@@ -22,17 +21,21 @@ const addUser = (req, res) => {
         .catch(err => res.status(422).json(err));
 };
 
+// AFTER THE USER'S PASSWORD HAS BEEN VERIFIED
+// SEND BACK AN OBJECT WITH ALL THE USER DATA
 const login = (req, res) => {
-    res.json({user: req.loggedInUser, tasks: req.tasks, notes: req.notes, events: req.events, projects: req.projects})
+    res.json({
+        user: req.loggedInUser,
+        tasks: req.tasks,
+        notes: req.notes,
+        events: req.events,
+        projects: req.projects
+    })
     return;
-    //res.send({
-        //token: getTokenForUser(req.user),
-        //user: req.user,
-    //});
 };
 
-// const editUser = (req, res) => {}
-
+// DELETE THE USER'S ACCOUNT -- NOTHING IMPLEMENTED
+// ON THE FRONT END FOR THIS YET. NEEDS PW PROTECTION
 const deleteUser = (req, res) => {
     const {id} = req.params;
     User.findByIdAndRemove(id, (err, user) => {
@@ -44,6 +47,5 @@ const deleteUser = (req, res) => {
 module.exports = {
     addUser,
     login,
-    //editUser,
     deleteUser,
 };

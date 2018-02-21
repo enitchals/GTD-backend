@@ -1,5 +1,3 @@
-// A task is a to-do item. It can be free-standing or associated with a project, and 
-
 const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({

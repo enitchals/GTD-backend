@@ -3,6 +3,7 @@ const Task = require('../models/taskModels.js');
 
 const ERROR = 422;
 
+// CREATE A NEW TASK OBJECT IN THE MONGO DB
 const addTask = (req, res) => {
     const { user, task, memo, project, status } = req.body;
     const newTask = new Task({ user, task, memo, project, status });
@@ -16,6 +17,7 @@ const addTask = (req, res) => {
         });
 };
 
+// GET ALL THE TASKS ASSOCIATED WITH A GIVEN USER ID
 const getTasks = (req, res) => {
     const { id } = req.params;
     Task
@@ -33,6 +35,7 @@ const getTasks = (req, res) => {
         });
 }
 
+// GET ALL THE TASKS ASSOCIATED WITH A GIVEN PROJECT ID
 const getTasksByProject = (req, res) => {
     const { id } = req.params;
     Task
@@ -50,6 +53,7 @@ const getTasksByProject = (req, res) => {
         });
 }
 
+// GET ALL THE NEXT ACTIONS ASSOCIATED WITH A GIVEN USER ID
 const getNextActions = (req, res) => {
     const { id } = req.params;
     Task
@@ -70,6 +74,9 @@ const getNextActions = (req, res) => {
         });
 }
 
+// GET A SPECIFIC TASKS'S DETAILS BY ID
+// THIS CAN PROBABLY BE DEPRECATED...
+// I DON'T THINK IT'S NEEDED ANYMORE
 const getTask = (req, res) => {
     const { id } = req.params;
     Task.findById(id)
@@ -86,9 +93,9 @@ const getTask = (req, res) => {
         });
 }
 
-// const editTask = (req, res) => {}
 
-//deleteTask needs authentication middleware
+// DELETE A TASK -- THIS NEEDS AUTH MIDDLEWARE 
+// OR SOME KIND OF TOKEN AUTH FOR PROTECTION
 const deleteTask = (req, res) => {
     const {id} = req.params;
     Task.findByIdAndRemove(id, (err, task) => {
@@ -100,7 +107,6 @@ const deleteTask = (req, res) => {
 
 module.exports = {
     addTask,
-    //editTask,
     deleteTask,
     getTask,
     getNextActions,

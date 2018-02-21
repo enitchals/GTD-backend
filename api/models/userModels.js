@@ -16,6 +16,9 @@ const UserSchema = new mongoose.Schema({
     },
 });
 
+// CHECK USER PASSWORD --
+// NOT SURE IF I'M USING IT
+// CAN MAYBE DELETE?
 UserSchema.methods.checkPassword = function(password, cb) {
     bcrypt.compare(password, this.password, (err, isMatch) => {
         if (err) return cb(err);
