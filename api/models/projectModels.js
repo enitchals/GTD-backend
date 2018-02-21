@@ -16,6 +16,11 @@ const ProjectSchema = new mongoose.Schema({
     memo: {
         type: String,
     },
+    status: {
+        type: String,
+        enum: ['active', 'someday'],
+        default: 'active'
+    },
     /*
     tasks: [{
         type: mongoose.Schema.Types.ObjectId,
