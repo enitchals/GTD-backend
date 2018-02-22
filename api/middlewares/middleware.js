@@ -26,12 +26,7 @@ hash = (req, res, next) => {
 
 // CONVERTS EMAILS TO LOWERCASE
 lowercase = (req, res, next) => {
-    const {email} = req.body;
-    if (!email) {
-        throw new Error();
-        return;
-    }
-    const lowercase = email.toLowerCase();
+    const lowercase = req.body.email.toLowerCase();
     req.email = lowercase;
     next();
 }
