@@ -11,7 +11,7 @@ module.exports = (app) => {
 // ROUTES FOR CREATING ACCOUNT, LOGGING IN, ETC
 //
     app.route('/user').post(middleware.hash, middleware.lowercase, user.addUser)
-    app.route('/login').post(middleware.authenticate, middleware.taskData, middleware.noteData, middleware.eventData, middleware.projectData, user.login)
+    app.route('/login').post(middleware.lowercase, middleware.authenticate, middleware.taskData, middleware.noteData, middleware.eventData, middleware.projectData, user.login)
 //
 // ROUTES FOR TASK-RELATED DATA
 // (NOT ALL OF THESE ARE ACTUALLY IN USE...)
