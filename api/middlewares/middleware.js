@@ -24,6 +24,18 @@ hash = (req, res, next) => {
         });
 };
 
+// CONVERTS EMAILS TO LOWERCASE
+lowercase = (req, res, next) => {
+    const {email} = req.body;
+    if (!email) {
+        throw new Error();
+        return;
+    }
+    const lowercase = email.toLowerCase();
+    req.email = lowercase;
+    next();
+}
+
 //AUTHENTICATION MIDDLEWARE FOR USER LOGIN
 authenticate = (req, res, next) => {
     const { email, password } = req.body;
