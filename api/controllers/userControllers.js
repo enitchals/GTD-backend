@@ -7,7 +7,7 @@ const Project = require('../models/projectModels.js');
 const ERROR = 422;
 
 // CREATE A NEW USER -- HASH PASSWORD AND CREATE MONGO USER OBJECT
-const addUser = (req, res) => {
+const addUser = (req, res, next) => {
     const password = req.password;
     const { name, email } = req.body;
     const newUser = new User({ name, email, password });
@@ -16,7 +16,7 @@ const addUser = (req, res) => {
         .then(user => {
             console.log("NEW USER:", user);
             res.json(user);
-            //res.send({ token: getTokenForUser(user)});
+            next();
         })
         .catch(err => res.status(422).json(err));
 };
@@ -30,6 +30,18 @@ const login = (req, res) => {
         notes: req.notes,
         events: req.events,
         projects: req.projects
+    })
+    return;
+};
+
+// FIRST TIME LOGIN
+const newUserLogin = (req, res) => {
+    res.json({
+        user: res.json.user,
+        tasks: [],
+        notes: [],
+        events: [],
+        projects: []
     })
     return;
 };
